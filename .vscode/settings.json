@@ -1,0 +1,16 @@
+{
+    "search.exclude": {
+        "**/.git": true,
+        "**/node_modules": true,
+        "**/output": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/logs": true
+    },
+    "files.autoSave": "off",
+    "jestrunner.configPath": "jest.config.js",
+    "runCurrentTest.run": "TZ=Etc/UTC npm run test -- ${relativeTestPath} --runTestsByPath --testNamePattern \"^${fullTestName}$\"",
+    "runCurrentTest.runAndUpdateSnapshots": "TZ=Etc/UTC npm run test -- -u ${relativeTestPath} --runTestsByPath --testNamePattern \"^${fullTestName}$\""
+}

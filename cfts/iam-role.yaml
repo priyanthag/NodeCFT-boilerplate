@@ -1,0 +1,267 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: >
+  IAM Role
+
+Parameters:
+# Network
+  RoleName:
+    Type: String
+
+  ResourcePrefix:
+    Type: String
+
+  ResourcePostfix:
+    Type: String
+
+Resources:
+  # Role
+  DevOpsRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      RoleName: !Ref RoleName
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service:
+                - ec2.amazonaws.com
+                - cloudformation.amazonaws.com
+                - ecs.amazonaws.com
+                - codebuild.amazonaws.com
+                - ecs-tasks.amazonaws.com
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        -
+          PolicyName: !Sub ${ResourcePrefix}IAM-Policy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  - iam:PassRole
+                  - iam:CreateInstanceProfile
+                  - iam:DeleteInstanceProfile
+                Resource:
+                  - !Sub arn:aws:iam::*:role/${ResourcePrefix}*
+                  - !Sub arn:aws:iam::*:instance-profile/${ResourcePrefix}*
+              -
+                Effect: "Allow"
+                Action:
+                  - iam:GetInstanceProfile
+                  - iam:AddRoleToInstanceProfile
+                  - iam:RemoveRoleFromInstanceProfile
+                Resource: "*"
+        -
+          PolicyName: !Sub ${ResourcePrefix}EC2-Policy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action: "ec2:*"
+                Resource:
+                  - !Sub arn:aws:ec2:*:*:*:${ResourcePrefix}*
+                  - !Sub arn:aws:ec2:*::image/*
+              -
+                Effect: "Allow"
+                Action:
+                  - ec2:DescribeSecurityGroups
+                  - ec2:DescribeDhcpOptions
+                  - ec2:CreateSecurityGroup
+                  - ec2:DeleteSecurityGroup
+                  - ec2:DescribeSubnets
+                  - ec2:DescribeVpcs
+                  - ec2:CreateNetworkInterface
+                  - ec2:DescribeNetworkInterfaces
+                  - ec2:DeleteNetworkInterface
+                  - ec2:AuthorizeSecurityGroupEgress
+                  - ec2:AuthorizeSecurityGroupIngress
+                  - ec2:DescribeInstances
+                Resource: "*"
+              -
+                Effect: Allow
+                Action:
+                  - ec2:CreateNetworkInterfacePermission
+                Resource: !Sub arn:aws:ec2:${AWS::Region}:${AWS::AccountId}:network-interface/*
+        -
+          PolicyName: !Sub ${ResourcePrefix}ECS-Policy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  - ecs:CreateCluster
+                  - ecs:DescribeClusters
+                  - ecs:DeleteCluster
+                  - ecs:RegisterTaskDefinition
+                  - ecs:DeregisterTaskDefinition
+                  - ecs:DescribeServices
+                  - ecs:CreateService
+                  - ecs:UpdateService
+                  - ecs:DeleteService
+                  - ecs:DeregisterContainerInstance
+                  - ecs:DiscoverPollEndpoint
+                  - ecs:Poll
+                  - ecs:RegisterContainerInstance
+                  - ecs:StartTelemetrySession
+                  - ecs:UpdateContainerInstancesState
+                  - ecs:Submit*
+                Resource: "*"
+              -
+                Effect: "Allow"
+                Action:
+                  - ecs:*
+                Resource:
+                  - !Sub arn:aws:ecs:*:*:cluster/${ResourcePrefix}*
+        -
+          PolicyName: !Sub ${ResourcePrefix}ELB-Policy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  - elasticloadbalancing:DescribeLoadBalancers
+                  - elasticloadbalancing:DescribeTargetGroups
+                  - elasticloadbalancing:DescribeListeners
+                  - elasticloadbalancing:DescribeRules
+                Resource: "*"
+              -
+                Effect: "Allow"
+                Action:
+                  - "elasticloadbalancing:*"
+                Resource:
+                  - !Sub arn:aws:elasticloadbalancing:*:*:*/*/${ResourcePrefix}*
+                  - !Sub arn:aws:elasticloadbalancing:*:*:*/${ResourcePrefix}*
+        -
+          PolicyName: !Sub ${ResourcePrefix}ECR-Policy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action: "ecr:*"
+                Resource:
+                  - arn:aws:ecr:*:*:repository/cde-msd-*
+              -
+                Effect: "Allow"
+                Action:
+                  - ecr:CreateRepository
+                  - ecr:GetAuthorizationToken
+                  - ecr:BatchCheckLayerAvailability
+                  - ecr:GetDownloadUrlForLayer
+                  - ecr:BatchGetImage
+                  - ecr:GetRepositoryPolicy
+                  - ecr:DescribeRepositories
+                  - ecr:ListImages
+                  - ecr:DescribeImages
+                  - ecr:InitiateLayerUpload
+                  - ecr:UploadLayerPart
+                  - ecr:CompleteLayerUpload
+                  - ecr:PutImage
+                Resource: "*"
+        -
+          PolicyName: !Sub ${ResourcePrefix}CodeBuild-Policy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  - "codebuild:*"
+                Resource:
+                  - !Sub arn:aws:codebuild:*:*:project/${ResourcePrefix}*
+        -
+          PolicyName: !Sub ${ResourcePrefix}CloudWatchLog-Policy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              -
+                Effect: Allow
+                Action:
+                  - logs:*
+                Resource:
+                  - !Sub arn:aws:logs:*:*:log-group:${ResourcePrefix}*:log-stream
+                  - !Sub arn:aws:logs:*:*:log-group:${ResourcePrefix}*:log-stream:*
+              -
+                Effect: Allow
+                Action:
+                  - logs:DescribeLogGroups
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: "*"
+        -
+          PolicyName: !Sub ${ResourcePrefix}AutoScalling-Policy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  - autoscaling:DescribeAutoScalingGroups
+                  - autoscaling:DescribeLaunchConfigurations
+                  - autoscaling:DescribeScalingActivities
+                  - autoscaling:DescribeAutoScalingInstances
+                Resource: "*"
+              -
+                Effect: Allow
+                Action:
+                  - autoscaling:*
+                Resource:
+                  - !Sub arn:aws:autoscaling:*:*:launchConfiguration:*:launchConfigurationName/${ResourcePrefix}*
+                  - !Sub arn:aws:autoscaling:*:*:autoScalingGroup:*:autoScalingGroupName/${ResourcePrefix}*
+        -
+          PolicyName: !Sub ${ResourcePrefix}S3-Policy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            -
+              Effect: Allow
+              Action:
+                - s3:PutObject
+                - s3:GetObject
+                - s3:GetObjectVersion
+              Resource:
+                - !Sub arn:aws:s3:::codepipeline-${AWS::Region}-*
+                - !Sub arn:aws:s3:::application-cde-msd-*
+            -
+              Effect: Allow
+              Action:
+                - s3:PutObject
+              Resource:
+                - !Sub arn:aws:s3:::${ResourcePrefix}*
+
+        -
+          PolicyName: !Sub ${ResourcePrefix}SSM-Policy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            -
+              Effect: Allow
+              Action:
+                - ssm:GetParameters
+              Resource: "*"
+        -
+          PolicyName: !Sub ${ResourcePrefix}CloudFormation-Policy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            -
+              Effect: Allow
+              Action:
+                - cloudformation:*
+              Resource: arn:aws:cloudformation:*:*:stack/Application-CDE-MSD-*
+
+Outputs:
+  RoleName:
+    Value: !Ref DevOpsRole
+  RoleArn:
+    Value: !GetAtt DevOpsRole.Arn

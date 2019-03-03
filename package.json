@@ -1,0 +1,61 @@
+{
+  "name": "nodecft-boilerplate",
+  "version": "0.0.1",
+  "keywords": [
+    "NodeCFT Boilerplate",
+    "CFT with NodeJS",
+    "NodeJS CTF",
+    "CTF",
+    "AWS",
+    "infrastructure as code software tool"
+  ],
+  "description": "NodeCF Boilerplate",
+  "main": "",
+  "scripts": {
+    "exec": "babel-node ",
+    "lint": "standard",
+    "lint:fix": "standard --fix",
+    "check": "npm run lint"
+  },
+  "pre-commit": [
+    "lint:fix",
+    "check"
+  ],
+  "author": "Priyantha Gunawardena <pgdesigning@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "nodecft": "^0.0.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "pre-commit": "^1.2.2",
+    "standard": "^12.0.1"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "context",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach",
+      "it",
+      "expect",
+      "test",
+      "gContext",
+      "jest",
+      "__rewire_reset_all__"
+    ],
+    "parser": "babel-eslint",
+    "plugins": [],
+    "ignore": [
+      "src/**/__tests__/**/*",
+      "src/**/__tests__/*",
+      "src/fixtures/*"
+    ]
+  }
+}
