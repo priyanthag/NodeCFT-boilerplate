@@ -2575,10 +2575,10 @@ node-pre-gyp@^0.10.0:
     semver "^5.3.0"
     tar "^4"
 
-nodecft@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/nodecft/-/nodecft-0.0.4.tgz#bb1013acef80fe7532dacee79987ecb7fbbf00b9"
-  integrity sha512-DTwIyJIbj0nXNJaXZ6RNgH6IGcXeUjsJjfph9nxGYo8pGXGzlT3dzNKw1enF2hU85Pstd3okyad9f5PMZSL0HQ==
+nodecft@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/nodecft/-/nodecft-0.0.7.tgz#19b78ebfeca0f35f28105b7a8fbce8c7112e7f3f"
+  integrity sha512-lcGr5WVeXXTr2CmaFCukW35FoWFA8hPep18OgGM7N+oqQ6KLGicjv/JYoaYuYF2wGK8VOs17ZzjMrUTtn/NYbg==
   dependencies:
     child_process "^1.0.2"
     util "^0.11.1"
