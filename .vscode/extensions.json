@@ -1,6 +1,7 @@
 {
 	"recommendations": [
     "redhat.vscode-yaml",
-    "asvetliakov.run-current-test"
+    "asvetliakov.run-current-test",
+    "streetsidesoftware.code-spell-checker"
   ]
 }

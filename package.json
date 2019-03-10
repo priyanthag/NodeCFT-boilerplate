@@ -24,8 +24,7 @@
   "author": "Priyantha Gunawardena <pgdesigning@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^6.2.0",
-    "nodecft": "^0.0.7"
+    "nodecft": "^0.0.8"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

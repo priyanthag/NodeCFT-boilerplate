@@ -2575,12 +2575,13 @@ node-pre-gyp@^0.10.0:
     semver "^5.3.0"
     tar "^4"
 
-nodecft@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/nodecft/-/nodecft-0.0.7.tgz#19b78ebfeca0f35f28105b7a8fbce8c7112e7f3f"
-  integrity sha512-lcGr5WVeXXTr2CmaFCukW35FoWFA8hPep18OgGM7N+oqQ6KLGicjv/JYoaYuYF2wGK8VOs17ZzjMrUTtn/NYbg==
+nodecft@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/nodecft/-/nodecft-0.0.8.tgz#e4b4dedce49451f0e72f24da76965f17736937e2"
+  integrity sha512-N/8c6dLyKim2uTwVZzGZS4FDimT82BT7FJX8ZoVutNBuy+07MhubgEevg9MMcj3VVfwR5bjyhnsb4gwRFJJu3g==
   dependencies:
     child_process "^1.0.2"
+    dotenv "^6.2.0"
     util "^0.11.1"
     winston "^3.2.1"
     winston-daily-rotate-file "^3.8.0"
@@ -2945,9 +2946,9 @@ rc@^1.2.7:
     strip-json-comments "~2.0.1"
 
 react-is@^16.8.1:
-  version "16.8.3"
-  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.3.tgz#4ad8b029c2a718fc0cfc746c8d4e1b7221e5387d"
-  integrity sha512-Y4rC1ZJmsxxkkPuMLwvKvlL1Zfpbcu+Bf4ZigkHup3v9EfdYhAlWAaVyA19olXq2o2mGn0w+dFKvk3pVVlYcIA==
+  version "16.8.4"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.4.tgz#90f336a68c3a29a096a3d648ab80e87ec61482a2"
+  integrity sha512-PVadd+WaUDOAciICm/J1waJaSvgq+4rHE/K70j0PFqKhkTBsPv/82UGQJNXAngz1fOQLLxI6z1sEDmJDQhCTAA==
 
 read-pkg-up@^2.0.0:
   version "2.0.0"
