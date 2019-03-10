@@ -22,7 +22,6 @@ Once linked, you should see local copy linked in your package.json dependency as
 ```
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^6.2.0",
     "nodecft": "../nodecft"
   },
   "devDependencies": {
