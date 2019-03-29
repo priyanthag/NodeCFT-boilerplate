@@ -58,5 +58,8 @@
       "src/**/__tests__/*",
       "src/fixtures/*"
     ]
-  }
+  },
+  "engines" : { 
+    "node" : ">8.0.0" 
+  } 
 }

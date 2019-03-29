@@ -6,7 +6,7 @@ NodeCFT allows you to write your AWS infrastructure as a code using nodeJS and C
 You don't need to learn any tool specific commands to work with NodeCFT like other infrastructure as code software tools, Terraform or Pulumi.
 
 ## Prerequisites
-- Make sure AWS CLI in installed. Refer https://aws.amazon.com/cli/ for more information
+- Make sure Node v8.x.x is installed.
 
 ## Getting Started
 
