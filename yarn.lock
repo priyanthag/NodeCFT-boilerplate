@@ -2552,8 +2552,10 @@ node-releases@^1.1.11:
   dependencies:
     semver "^5.3.0"
 
-nodecft@../nodecft:
+nodecft@^0.0.9:
   version "0.0.9"
+  resolved "https://registry.yarnpkg.com/nodecft/-/nodecft-0.0.9.tgz#08ffb80faa56da365db2f6e4113aa2ba72bd301e"
+  integrity sha512-+oY1qyp8A4mkn8A4gKvttJOC5anDM2Mzw3ptXSlj3yb2GlGx8Ez/2GMj5jRJdzsxryBWZNuoScV4HIMlgMG5/g==
   dependencies:
     aws-sdk "^2.418.0"
     dotenv "^6.2.0"

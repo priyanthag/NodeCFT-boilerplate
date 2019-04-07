@@ -24,7 +24,7 @@
   "author": "Priyantha Gunawardena <pgdesigning@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "nodecft": "../nodecft"
+    "nodecft": "^0.0.9"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -59,7 +59,7 @@
       "src/fixtures/*"
     ]
   },
-  "engines" : { 
-    "node" : ">8.0.0" 
-  } 
+  "engines": {
+    "node": ">8.0.0"
+  }
 }
