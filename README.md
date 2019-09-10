@@ -7,6 +7,7 @@ You don't need to learn any tool specific commands to work with NodeCFT like oth
 
 ## Prerequisites
 - Make sure Node v8.x.x is installed.
+- Configure AWS SDK - https://aws.amazon.com/developers/getting-started/nodejs/
 
 ## Getting Started
 
